@@ -192,6 +192,10 @@ func LoadModuleFromFile(file *hcl.File, mod *Module) hcl.Diagnostics {
 
 					if attr, defined := content.Attributes["condition"]; defined {
 						variableValidation.Condition = attr.Expr
+						var conditionString string
+						valDiags := gohcl.DecodeExpression(attr.Expr, nil, &conditionString)
+						diags = append(diags, valDiags...)
+						variableValidation.ConditionString = conditionString
 					}
 
 					if attr, defined := content.Attributes["error_message"]; defined {

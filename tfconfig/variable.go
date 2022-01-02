@@ -30,7 +30,8 @@ type VariableValidation struct {
 	// to indicate that the value is valid or false to indicate that it is
 	// invalid. If the expression produces an error, that's considered a bug
 	// in the module defining the validation rule, not an error in the caller.
-	Condition hcl.Expression `json:"-"`
+	Condition       hcl.Expression `json:"-"`
+	ConditionString string         `json:"condition_string"`
 
 	// ErrorMessage is one or more full sentences, which would need to be in
 	// English for consistency with the rest of the error message output but
